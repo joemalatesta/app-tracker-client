@@ -29,14 +29,14 @@ async function getAll() {
   return res.json()
 }
 
-async function update(appList) {
-  const res = await fetch(`${BASE_URL}/${appList._id}`, {
+async function update(item) {
+  const res = await fetch(`${BASE_URL}/${item}._id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
-    body: JSON.stringify(appList)
+    body: JSON.stringify(item)
   })
 	return res.json()
 }

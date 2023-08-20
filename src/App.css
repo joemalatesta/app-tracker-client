@@ -37,3 +37,21 @@ nav > ul {
   align-items: center;
   justify-content: space-around;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  background-color: darkblue;
+  justify-items: center;
+}
+
+.center {
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}

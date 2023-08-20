@@ -7,6 +7,8 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
+import CreateForm from './pages/CreateForm/CreateForm'
+import EditForm from './pages/EditForm/EditForm'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 
 // components
@@ -21,6 +23,7 @@ import './App.css'
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
+
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -62,6 +65,12 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path='/createForm'
+          element={<CreateForm user={user} /> }
+        />
+        <Route path='/editForm'
+          element={<EditForm /> }/>
       </Routes>
     </>
   )

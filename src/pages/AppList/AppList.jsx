@@ -1,5 +1,5 @@
 // npm modules
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import * as appListService from '../../services/applicationList'
 import AppCard from '../../components/AppCard/AppCard'
@@ -8,13 +8,7 @@ import AppCard from '../../components/AppCard/AppCard'
 
 // css
 
-const AppList = () => {
-  const [appList, setAppList] = useState([])
-
-  const handleDeleteCharSheet = async id => {
-    const deletedApp = await appListService.deleteOne(id)
-    setAppList(appList.filter(sheet => sheet._id !== deletedApp._id))
-  }
+const AppList = ({appList, setAppList}) => {
 
   useEffect(() =>{
     const fetchAllCharSheets = async () => {
@@ -23,19 +17,24 @@ const AppList = () => {
     }
     fetchAllCharSheets()
   },[])
+
+
   
   return ( 
     <>
       <div className='app lowerGridCard'>
         <div>
           <h1 className='card title'>Applications Page</h1>
-          <Link className='card' to='/createChar'>Create a New Application</Link>
+          <Link className='card' to='/createForm'>Create a New Application</Link>
         </div>
       </div>
       <div>
-        {appList.length ?
+        {appList?.length ?
           appList.map((app) =>
-            <AppCard key={app._id} handleDeleteCharSheet={handleDeleteCharSheet} app={app} />
+              <AppCard 
+                key={app._id} 
+                app={app} 
+              />
             ) 
             :
             <h3>No Applications to display</h3>

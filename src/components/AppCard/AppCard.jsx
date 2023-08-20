@@ -1,36 +1,23 @@
-// services
-import { useState, useEffect } from 'react'
-import * as appService from '../../services/applicationList'
 
+import { Link } from 'react-router-dom'
 
-const AppCard = (props) => {
-  const [app, setApp] = useState([])
-
-  const handleDeleteApp = async id => {
-    console.log(id);
-    const deletedApp = await appService.deleteOne(id)
-    setApp(app.filter(sheet => sheet._id !== deletedApp._id))
-  }
-
-  useEffect(() =>{
-    const fetchApps = async (id) => {
-      const appData = await appService.getAll(id)
-      setApp(appData)
-    }
-    fetchApps()
-  },[])
-
+const AppCard = ({ app }) => {
   return ( 
     <>
-      {props.app.type}
-      {props.app.companyName}
-      {props.app.contactPerson}
-      {props.app.websiteLink}
-      {props.app.status}
-      {props.app.dateApplied}
-      {props.app.resumeSent}
-      {props.app.portfolioSent}
-      <button  onClick={()=> handleDeleteApp(props.app._id)}>delete</button>
+      <div className='grid'>
+        <p>{app?.type}</p>
+        <p>{app?.companyName}</p>
+        <p>{app?.contactPerson}</p>
+        <p>{app?.websiteLink}</p>
+        <p>{app?.status}</p>
+        <p>{app?.dateApplied}</p>
+        <Link
+          to='/EditForm'
+          state={{app}}
+        >
+        EDIT
+        </Link>
+      </div>
       <br/>
     </>
    );
