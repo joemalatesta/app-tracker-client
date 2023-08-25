@@ -2,16 +2,15 @@ import * as service from '../../services/applicationList'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useRef, useEffect } from 'react'
 
-const EditForm  = ({ app }) => {
+const EditForm  = ( ) => {
   const navigate = useNavigate()
   const formElement = useRef()
   const location = useLocation()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState(location.state.app)
-  console.log(app);
 
 
-  const handleDeleteApp = async id => {
+  const handleDeleteApp = async() => {
     await service.deleteOne(location.state.app._id)
     navigate('/')
   }
@@ -29,7 +28,6 @@ const EditForm  = ({ app }) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    console.log('in submit',formData);
     try {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
@@ -46,8 +44,7 @@ const EditForm  = ({ app }) => {
   }
 
   const handleUpdateApp = async (updatedAppData) => {
-    const updatedApp = await service.update(updatedAppData)
-    
+    await service.update(updatedAppData)
     navigate('/')
   }
 
