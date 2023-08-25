@@ -30,7 +30,8 @@ async function getAll() {
 }
 
 async function update(item) {
-  const res = await fetch(`${BASE_URL}/${item}._id}`, {
+  console.log('this is the item from the update on the front end',item);
+  const res = await fetch(`${BASE_URL}/${item._id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

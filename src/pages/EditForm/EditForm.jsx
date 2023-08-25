@@ -9,8 +9,10 @@ const EditForm  = ({ app }) => {
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState(location.state.app)
   console.log(app);
+
+
   const handleDeleteApp = async id => {
-    const deletedApp = await service.deleteOne(location.state.app._id)
+    await service.deleteOne(location.state.app._id)
     navigate('/')
   }
 
@@ -32,7 +34,7 @@ const EditForm  = ({ app }) => {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      await service.update(formData._id)
+      await service.update(formData, formData)
     } catch (err) {
       console.log(err)
     }
@@ -42,6 +44,13 @@ const EditForm  = ({ app }) => {
     if(validForm === true)return (type && companyName && contactPerson && websiteLink && status && dateApplied && resumeSent && portfolioSent)
     else setValidForm(!validForm)
   }
+
+  const handleUpdateApp = async (updatedAppData) => {
+    const updatedApp = await service.update(updatedAppData)
+    
+    navigate('/')
+  }
+
   return ( 
   <>
      <div className='center'>
@@ -127,7 +136,7 @@ const EditForm  = ({ app }) => {
             onChange={handleChange}
             />
         </div>
-      <button disabled={isFormInvalid()}>Submit</button>
+      <button disabled={isFormInvalid()} onClick={()=>handleUpdateApp(formData)} >Submit</button>
       <Link
 						to="/"
 						className="btn btn-danger btn-fluid"
