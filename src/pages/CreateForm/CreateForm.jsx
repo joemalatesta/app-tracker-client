@@ -111,7 +111,7 @@ const CreateForm  = () => {
       <div>
         <label htmlFor="dateApplied" >Date Applied :</label>
         <input
-          type="text"
+          type="date"
           autoComplete="off"
           id="dateApplied"
           name="dateApplied"

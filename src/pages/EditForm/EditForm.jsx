@@ -51,12 +51,14 @@ const EditForm  = ( ) => {
   return ( 
   <>
      <div className='center'>
-      <form 
+      <form
+        
         ref={formElement}
         autoComplete='off'
         onSubmit={handleSubmit}
         >
         <div
+          className='center'
           type='text'
           id="type"
           name='type'
@@ -73,7 +75,7 @@ const EditForm  = ( ) => {
           </select>
 
         </div>
-        <div>
+        <div className='center'>
           <label htmlFor="companyName" >Company Name :</label>
           <input
             type="text"
@@ -84,7 +86,7 @@ const EditForm  = ( ) => {
             onChange={handleChange}
             />
         </div>
-        <div>
+        <div className='center'>
           <label htmlFor="contactPerson" >Contact Person :</label>
           <input
             type="text"
@@ -95,7 +97,7 @@ const EditForm  = ( ) => {
             onChange={handleChange}
             />
         </div>
-        <div>
+        <div className='center'>
           <label htmlFor="websiteLink" >Website Link :</label>
           <input
             type="text"
@@ -107,6 +109,7 @@ const EditForm  = ( ) => {
             />
         </div>
         <div
+          className='center'
           type="text"
           id="status"
           name="status"
@@ -120,12 +123,13 @@ const EditForm  = ( ) => {
             <option value="applied">Applied</option>
             <option value="interview">Interview</option>
             <option value="thankYou">Sent Thank you</option>
+            <option value="rejected">Rejected</option>
           </select>
         </div>
-        <div>
+        <div className='center'>
           <label htmlFor="dateApplied" >Date Applied :</label>
           <input
-            type="text"
+            type="date"
             autoComplete="off"
             id="dateApplied"
             name="dateApplied"
@@ -133,15 +137,15 @@ const EditForm  = ( ) => {
             onChange={handleChange}
             />
         </div>
-      <button disabled={isFormInvalid()} onClick={()=>handleUpdateApp(formData)} >Submit</button>
+      <a  className='center' disabled={isFormInvalid()} onClick={()=>handleUpdateApp(formData)} ><button>Submit</button></a>
+      <a className='center' onClick={()=> handleDeleteApp(location.state.app._id)}><button style={{background: 'red', color:'white'}}>Delete</button></a>
       <Link
-						to="/"
-						className="btn btn-danger btn-fluid"
-					>
-						Cancel
-					</Link>
+				to="/"
+        className='center'
+			>
+        <button>Cancel</button>
+			</Link>
       </form>
-      <button onClick={()=> handleDeleteApp(location.state.app._id)}>DELETE</button>
     </div>
   </>   
   )
